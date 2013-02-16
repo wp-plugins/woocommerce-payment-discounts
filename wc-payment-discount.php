@@ -5,7 +5,7 @@
  * Description: Adds discounts on specific payment methods in WooCommerce.
  * Author: claudiosanches
  * Author URI: http://claudiosmweb.com/
- * Version: 1.0
+ * Version: 1.1
  * License: GPLv2 or later
  * Text Domain: wcpaydisc
  * Domain Path: /languages/
@@ -25,7 +25,7 @@ class WC_Payment_Discounts {
         add_action( 'admin_init', array( &$this, 'register_settings' ) );
 
         // Add scripts in checkout review.
-        add_action( 'woocommerce_checkout_order_review', array( &$this, 'script' ) );
+        add_action( 'wp_footer', array( &$this, 'script' ) );
 
         // Register ajax hooks.
         add_action( 'wp_ajax_nopriv_wc_custom_payment_discount', array( &$this, 'ajax' ) );
@@ -149,12 +149,12 @@ class WC_Payment_Discounts {
                 }
 
                 // Generate discount on click.
-                $("#order_review input[name=payment_method]").on("click", function() {
+                $('form.checkout, #order_review').on('change', '.payment_methods input.input-radio', function() {
                     generate_discount($(this));
                 });
 
                 $("body").load(function() {
-                    generate_discount($("#order_review input[name=payment_method]"));
+                   generate_discount($("#order_review input[name=payment_method]"));
                 });
             });
         </script>

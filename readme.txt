@@ -4,7 +4,7 @@ Donate link: http://claudiosmweb.com/doacoes/
 Tags: woocommerce, discount, coupon
 Requires at least: 3.3
 Tested up to: 3.5
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -67,6 +67,10 @@ Desta forma basta criar um cupom de desconto e adicionar ele a este plugin para 
 1. Settings page.
 
 == Changelog ==
+
+= 1.1 - 16/02/2013 =
+
+* Fixed the problem of infinite reload during the checkout. Thanks to Dani Mello for their confidence in me to solve the problem in her site.
 
 = 1.0 =
 
