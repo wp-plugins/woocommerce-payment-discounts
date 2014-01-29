@@ -384,14 +384,14 @@ class WC_Payment_Discounts {
 	/**
 	 * Add discount.
 	 *
-	 * @since  2.0.0
+	 * @since  2.0.1
 	 *
 	 * @param  object $cart WC_Cart object.
 	 *
 	 * @return void
 	 */
 	public function add_discount( $cart ) {
-		if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
+		if ( is_admin() && ! defined( 'DOING_AJAX' ) || is_cart() ) {
 			return;
 		}
 
