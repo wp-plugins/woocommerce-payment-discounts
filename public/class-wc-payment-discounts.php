@@ -18,11 +18,11 @@ class WC_Payment_Discounts {
 	/**
 	 * Plugin version.
 	 *
-	 * @since 2.0.0
+	 * @since 2.0.3
 	 *
 	 * @var   string
 	 */
-	const VERSION = '2.0.0';
+	const VERSION = '2.0.3';
 
 	/**
 	 * Plugin slug.
@@ -422,6 +422,8 @@ class WC_Payment_Discounts {
 	/**
 	 * Diplay the discount in checkout order view.
 	 *
+	 * @since  2.0.3
+	 *
 	 * @return string
 	 */
 	public function discount_display() {
@@ -429,12 +431,15 @@ class WC_Payment_Discounts {
 
 		if ( version_compare( $woocommerce->version, '2.1', '>=' ) ) {
 			if ( 0 < $this->cart_discount ) {
+				$discount_name  = $this->discount_name;
+				$discount_price = woocommerce_price( $this->cart_discount );
+
 				$html = '<tr class="order-total">';
-					$html .= '<th>' . $this->discount_name . '</th>';
-					$html .= '<td>-' . woocommerce_price( $this->cart_discount ) . '</td>';
+					$html .= '<th>' . $discount_name . '</th>';
+					$html .= '<td>-' . $discount_price . '</td>';
 				$html .= '</tr>';
 
-				echo $html;
+				echo apply_filters( 'wc_payment_discounts_row', $html, $discount_name, $discount_price );
 			}
 		}
 	}
